@@ -24,6 +24,11 @@ get_gulp.task('watch', function(){
     // Start Gulp styles Task
     get_gulp.start('cssInject');
   });
+
+  get_gulp_watch('./app/assets/scripts/**/*.js', function() {
+    // Start Gulp styles Task
+    get_gulp.start('scriptsReferesh');
+  });
 });
 
 // Brand new task
@@ -31,4 +36,8 @@ get_gulp.task('watch', function(){
 get_gulp.task('cssInject', ['styles'], function(){
   return get_gulp.src('./app/temp/styles/styles.css')
   .pipe(get_browserSync_import.stream());
+});
+
+get_gulp.task('scriptsReferesh', ['scripts'], function(){
+  get_browserSync_import.reload();
 });
